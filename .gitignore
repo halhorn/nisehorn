@@ -2,7 +2,7 @@
 .htaccess
 lastlog
 lastlog_en
-config.php
+config*.php
 *.back
 *~
 \#*\#
