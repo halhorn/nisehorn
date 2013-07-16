@@ -5,6 +5,7 @@ lastlog_en
 config.php
 *.back
 *~
+\#*\#
 task/niseho.php
 
 
