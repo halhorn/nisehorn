@@ -1,0 +1,39 @@
+Info : DateExecute Start.<BR>
+Info : Follower Update Start.<BR>
+Info : Getting Followers...<BR>
+object(stdClass)#40 (1) {
+  ["errors"]=>
+  array(1) {
+    [0]=>
+    object(stdClass)#41 (2) {
+      ["message"]=>
+      string(31) "Sorry, that page does not exist"
+      ["code"]=>
+      int(34)
+    }
+  }
+}
+<B>Warn : STWrapper::get : fault (return notice an error.)
+[url] http://api.twitter.com/1.1/statuses/followers.json
+[return] Sorry, that page does not exist
+</B><BR>
+<B>Warn : stwrapper.getFollowers: getFollowers fault. 1 th loop. 0 items in prev loops. requested cursor:-1</B><BR>
+Info : Getting Friends...<BR>
+object(stdClass)#40 (1) {
+  ["errors"]=>
+  array(1) {
+    [0]=>
+    object(stdClass)#41 (2) {
+      ["message"]=>
+      string(31) "Sorry, that page does not exist"
+      ["code"]=>
+      int(34)
+    }
+  }
+}
+<B>Warn : STWrapper::get : fault (return notice an error.)
+[url] http://api.twitter.com/1.1/statuses/friends.json
+[return] Sorry, that page does not exist
+</B><BR>
+<B>Warn : stwrapper.getFriends: getFriends fault. 1 th loop. 0 items in prev loops. requested cursor:-1</B><BR>
+<B>Warn : followerの取得に失敗しました。</B><BR>
