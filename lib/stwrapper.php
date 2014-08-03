@@ -138,7 +138,7 @@ class STWrapper
 	        $cursor = -1;
 	        $i = 1;
 			while($cursor) {
-				$result = $this->get("http://api.twitter.com/1.1/statuses/friends.json",array("cursor"=>$cursor));
+				$result = $this->get("https://api.twitter.com/1.1/friends/list.json",array("cursor"=>$cursor));
 				if($result == array()){
 					warn("stwrapper.getFriends: getFriends fault. $i th loop. ". count($this->friends) ." items in prev loops. requested cursor:$cursor");
 					$this->friends = array();
@@ -160,7 +160,7 @@ class STWrapper
 	        $cursor = -1;
 	        $i = 1;
 			while($cursor) {
-				$result = $this->get("http://api.twitter.com/1.1/statuses/followers.json",array("cursor"=>$cursor));
+				$result = $this->get("https://api.twitter.com/1.1/followers/list.json",array("cursor"=>$cursor));
 				if($result == array()){
 					warn("stwrapper.getFollowers: getFollowers fault. $i th loop. ". count($this->friends) ." items in prev loops. requested cursor:$cursor");
 					$this->followers = array();
@@ -176,7 +176,7 @@ class STWrapper
 	}
 	
 	function getStatusShow($id) {
-		return $this->get("http://api.twitter.com/1.1/statuses/show/".$id.".json");
+		return $this->get("https://api.twitter.com/1.1/statuses/show.json", array("id" => $id));
 	}
 	
 	function getUserShow($arg) {
@@ -185,7 +185,7 @@ class STWrapper
 			$opt = $arg;
 		}
 		
-		return $this->get("http://api.twitter.com/1.1/users/show.json", $opt);
+		return $this->get("https://api.twitter.com/1.1/users/show.json", $opt);
 	}
 	
 	function getRateLimitStatus() {
@@ -209,19 +209,19 @@ class STWrapper
 			$opt = $text;
 		}
 		if ($type == "nisehoari"){
-			$ret = $this->nisehoaripost("http://api.twitter.com/1.1/statuses/update.json", $opt);
+			$ret = $this->nisehoaripost("https://api.twitter.com/1.1/statuses/update.json", $opt);
 			if($ret["error"] != "User is over daily status update limit.") return;
 		}
 		if($this->kiseinum == -1){
-			$ret = $this->post("http://api.twitter.com/1.1/statuses/update.json", $opt);
+			$ret = $this->post("https://api.twitter.com/1.1/statuses/update.json", $opt);
 		}else{
-			$ret = $this->subpost("http://api.twitter.com/1.1/statuses/update.json", $opt, $this->kiseinum);
+			$ret = $this->subpost("https://api.twitter.com/1.1/statuses/update.json", $opt, $this->kiseinum);
 		}
 		
 		// 失敗したら次の規制用アカを使用。
 		while($ret["error"] == "User is over daily status update limit." && $this->kiseinum < $this->subapinum-1){
 			$this->kiseinum++;
-			$ret = $this->subpost("http://api.twitter.com/1.1/statuses/update.json", $opt, $this->kiseinum);
+			$ret = $this->subpost("https://api.twitter.com/1.1/statuses/update.json", $opt, $this->kiseinum);
 		}
 		
 		if($this->kiseinum != -1){
@@ -236,7 +236,7 @@ class STWrapper
 		if ($pid == -1) error("pcntl_fork failed!!");
 		elseif ($pid) return; // 親プロセスなら戻る。
 		*/
-		$this->post("http://api.twitter.com/1.1/friendships/create/".$screen_name.".json");
+		$this->post("https://api.twitter.com/1.1/friendships/create.json", array(screen_name => $screen_name, follow => True));
 		//exit(0);
 	}
 	
@@ -247,7 +247,7 @@ class STWrapper
 		elseif ($pid) return; // 親プロセスなら戻る。
 		*/
 		$opt = array("screen_name"=>$screen_name);
-		$this->post("http://api.twitter.com/1.1/friendships/destroy.json", $opt);
+		$this->post("https://api.twitter.com/1.1/friendships/destroy.json", $opt);
 		//exit(0);
 	}
 	
