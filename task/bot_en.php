@@ -38,7 +38,6 @@ class Bot extends TaskBase
 		// TLを取得してキャッシュ
 		$this->fTimeline = $this->st->getFriendsTimeline();
 		$this->replies = $this->st->getReplies();
-		$this->pTimeline = $this->st->getPublicTimeline();
 		$this->frTimeline = $this->st->getFriendsRepliesTimeline();
 		
 		

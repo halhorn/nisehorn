@@ -11,7 +11,6 @@ class STWrapper
 	var $friendsTimeline = null;
 	var $friendsReplyTimeline = null;
 	var $friendsTimelineDone = False;
-	var $publicTimeline = null;
 	var $friends = null;
 	var $replies = null;
 	var $repliesDone = False;
@@ -131,17 +130,6 @@ class STWrapper
 		info("getFriendsReplies end (" . count($this->friendsReplyTimeline) . " records.)");
 		return $this->friendsReplyTimeline;
 	}
-	
-/*	// publicTimelineのシングルトンインスタンスを返します。
-	function getPublicTimeline() {
-		if(!$this->publicTimeline) { 
-			$this->publicTimeline = $this->get("http://api.twitter.com/1.1/statuses/public_timeline.json");
-			$this->publicTimeline = $this->convertTimeline($this->publicTimeline, False);
-			$this->db->addTweets("public_tweet", $this->publicTimeline);
-		}
-		info("getPublicTimeline end (" . count($this->publicTimeline) . " records");
-		return $this->publicTimeline;
-	}*/
 	
 	// friendsのシングルトンインスタンスを返します。
 	function getFriends() {

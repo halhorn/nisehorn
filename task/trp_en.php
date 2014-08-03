@@ -22,12 +22,9 @@ class TRP extends TaskBase
 		//return;
 		info("TRP start.");
 		$this->fTimeline = $this->st->getFriendsTimeline();
-		$this->pTimeline = $this->st->getPublicTimeline();
 		
 		//info("TRP:FriendsLoop");
 		$this->friendsLoop();
-		//info("TRP:PublicLoop");
-		$this->publicLoop();
 		
 		// DBへTRPを登録。
 		info("TRP:Registing to DB...(".count($this->regists)."records)");
@@ -51,15 +48,6 @@ class TRP extends TaskBase
 				
 			} else {
 				$this->tweetReplyPair($tweet);
-			}
-		}
-	}
-	
-	// publicTimelineからの処理です。
-	function publicLoop() {
-		foreach($this->pTimeline as $tweet) {
-			if ($this->tool->isReply($tweet)) {
-				$this->registTweetReplyPair($tweet);
 			}
 		}
 	}

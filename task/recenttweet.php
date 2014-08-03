@@ -89,10 +89,7 @@ class RecentTweet extends TaskBase
 		global $username;
 		
 		info("RecentTweet:Theme->$theme");
-		$fresult = $this->db->select("friends_tweet", "text like '%$theme%'");
-		$presult = $this->db->select("public_tweet", "text like '%$theme%'");
-		$result = array_merge($fresult,$presult);
-		//$result = $presult;
+		$result = $this->db->select("friends_tweet", "text like '%$theme%'");
 		$texts = array();
 		
 		foreach ($result as $tweet) {
