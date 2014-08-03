@@ -2,6 +2,8 @@
 .htaccess
 lastlog
 lastlog_en
+lastdateexecutelog
+lastdateexecutelog_en
 config*.php
 *.back
 *~
