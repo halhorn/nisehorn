@@ -7,6 +7,7 @@ require_once("niseho.php");
 require_once("timer.php");
 require_once("recenttweet.php");
 require_once("followerupdate.php");
+require_once("followbyreply.php");
 
 // ボットのクラスです。/////////////////////////////////////////////////////////
 class Bot extends TaskBase
@@ -48,6 +49,9 @@ class Bot extends TaskBase
 		info("TL Caching done.");
 		
 		// 実行開始
+		$follow = new FollowByReply();
+		$follow->execute();
+
 		$niseho = new Niseho();
 		$niseho->execute();
 		
