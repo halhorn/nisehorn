@@ -102,8 +102,8 @@ class STWrapper
 		// キャッシュがある場合それを返す。
 		if($this->friendsReplyTimeline) return $this->friendsReplyTimeline;
 		
-		$ft = $this->friendsTimeline;
-		$rt = $this->replies;
+		$ft = $this->getFriendsTimeline();
+		$rt = $this->getReplies();
 		$maxf = count($ft);
 		$maxr = count($rt);
 		$f = 0;
